@@ -17,6 +17,6 @@ echo $PASS | $BINARY tx staking create-validator \
   --min-self-delegation=1 \
   --from=$KEY \
   --website=$WEBSITE \
-  --details=$DETAILS \
+  --details="$DETAILS" \
   --gas=auto --gas-adjustment=1.4 \
   -y
