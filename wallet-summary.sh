@@ -34,7 +34,7 @@ do
 
    stake=$(0gchaind query staking delegations $wallet -o json | jq -r .delegation_responses[].delegation.shares | awk '{s+=$1} END {print s/1000000}')
    [ -z $stake ] && stake="-"
-   da=$(curl -sX GET "https://chainscan-newton.0g.ai/open/api?module=account&action=txlist&address="$wallet"&startblock=1&endblock=1022301&page=1&offset=100&sort=desc" -H  "accept: application/json" | jq | grep -c -E $da_contract
+#   da=$(curl -sX GET "https://chainscan-newton.0g.ai/open/api?module=account&action=txlist&address="$wallet"&startblock=1&endblock=1022301&page=1&offset=100&sort=desc" -H  "accept: application/json" | jq | grep -c -E $da_contract
 #   uploads=$(curl -sX 'GET'   'https://chainscan-newton.0g.ai/api/v2/addresses/'$wallet_eth'/transactions?filter=to%20%7C%20from'   -H 'accept: application/json' | jq | grep -c -e 0x8873cc79c5b3b56665>
 #   faucet=$(curl -sX 'GET'   'https://chainscan-newton.0g.ai/api/v2/addresses/'$wallet_eth'/transactions?filter=to%20%7C%20from'   -H 'accept: application/json' | jq | grep -c 0x83c4A688174A8d4b99b4C8>
 
