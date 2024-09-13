@@ -3,6 +3,12 @@
 folder=$(echo $(cd -- $(dirname -- "${BASH_SOURCE[0]}") && pwd) | awk -F/ '{print $NF}')
 source ~/scripts/$folder/cfg
 
+#Confirmation
+read -p "Sure? " sure
+case $sure in
+ y|Y|yes|YES|Yes) ;;
+ *) exit ;;
+esac
 
 #init node and wallet
 $BINARY init $MONIKER --chain-id=$CHAIN --home $DATA
