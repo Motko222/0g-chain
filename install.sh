@@ -3,7 +3,7 @@
 folder=$(echo $(cd -- $(dirname -- "${BASH_SOURCE[0]}") && pwd) | awk -F/ '{print $NF}')
 source ~/.bash_profile
 
-read -p "Tag? " tag
+read -p "Tag? (https://github.com/0glabs/0g-chain/releases) " tag
 
 sudo apt install -y unzip wget golang-go
 
