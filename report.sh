@@ -1,14 +1,13 @@
 #!/bin/bash
 
-folder=$(echo $(cd -- $(dirname -- "${BASH_SOURCE[0]}") && pwd) | awk -F/ '{print $NF}')
-source ~/scripts/$folder/cfg
+path=$(cd -- $(dirname -- "${BASH_SOURCE[0]}") && pwd)
+folder=$(echo $path | awk -F/ '{print $NF}')
+json=~/logs/report-$folder
 source ~/.bash_profile
+source $path/cfg
 
 network=testnet
 group=validator
-owner=$OWNER
-id=$ID
-
 rpc_port=$($BINARY config | jq -r .node | cut -d : -f 3)
 json=$(curl -s localhost:$rpc_port/status | jq .result)
 pid=$(pgrep $BINARY)
@@ -57,47 +56,42 @@ then status="offline";
  message="process not running";
 fi
 
-#json output
-cat << EOF
+cat >$json << EOF
 {
   "updated":"$(date --utc +%FT%TZ)",
-  "id":"$ID",
-  "machine":"$MACHINE",
-  "version":"$version",
-  "chain":"$chain",
-  "status":"$status",
-  "message":"$message",
-  "rpcport":"$rpc_port",
-  "folder1":"$foldersize1",
-  "moniker":"$moniker",
-  "node_id":"$node_id",
-  "key":"$KEY",
-  "wallet":"$wallet",
-  "wallet_eth":"$wallet_eth",
-  "valoper":"$valoper",
-  "pubkey":"$pubkey",
-  "catchingUp":"$catchingUp",
-  "jailed":"$jailed",
-  "active":$active,
-  "local_height":$latest_block,
-  "network_height":$network_height,
-  "votingPower":$votingPower,
-  "tokens":$tokens,
-  "threshold":$threshold,
-  "delegators":$delegators,
-  "balance":$balance
+  "measurement":"report",
+  "tags": {
+         "id":"$folder",
+         "machine":"$MACHINE",
+         "grp":"node",
+         "owner":"$OWNER"
+  },
+  "fields": {
+        "version":"$version",
+        "chain":"$chain",
+        "status":"$status",
+        "message":"$message",
+        "rpcport":"$rpc_port",
+        "folder1":"$foldersize1",
+        "moniker":"$moniker",
+        "node_id":"$node_id",
+        "key":"$KEY",
+        "wallet":"$wallet",
+        "wallet_eth":"$wallet_eth",
+        "valoper":"$valoper",
+        "pubkey":"$pubkey",
+        "catchingUp":"$catchingUp",
+        "jailed":"$jailed",
+        "active":$active,
+        "local_height":$latest_block,
+        "network_height":$network_height,
+        "votingPower":$votingPower,
+        "tokens":$tokens,
+        "threshold":$threshold,
+        "delegators":$delegators,
+        "balance":$balance
+  }
 }
 EOF
 
-# send data to influxdb
-if [ ! -z $INFLUX_HOST ]
-then
- curl --request POST \
- "$INFLUX_HOST/api/v2/write?org=$INFLUX_ORG&bucket=$INFLUX_BUCKET&precision=ns" \
-  --header "Authorization: Token $INFLUX_TOKEN" \
-  --header "Content-Type: text/plain; charset=utf-8" \
-  --header "Accept: application/json" \
-  --data-binary "
-    report,machine=$MACHINE,id=$id,moniker=$moniker,grp=$group,owner=$owner status=\"$status\",message=\"$message\",version=\"$version\",url=\"$url\",chain=\"$chain\",tokens=\"$tokens\",threshold=\"$threshold\",active=\"$active\",jailed=\"$jailed\",network_height=\"$network_height\",local_height=\"$latest_block\" $(date +%s%N) 
-    "
-fi
+cat $json
