@@ -4,7 +4,7 @@ path=$(cd -- $(dirname -- "${BASH_SOURCE[0]}") && pwd)
 folder=$(echo $path | awk -F/ '{print $NF}')
 json=~/logs/report-$folder
 source ~/.bash_profile
-source ~/acripts/0g-chain/cfg
+source ~/scripts/0g-chain/cfg
 
 network=testnet
 group=validator
