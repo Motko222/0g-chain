@@ -8,7 +8,6 @@ network=testnet
 group=validator
 owner=$OWNER
 id=$ID
-public_rpc=https://evmrpc-testnet.0g.ai/
 
 rpc_port=$($BINARY config | jq -r .node | cut -d : -f 3)
 json=$(curl -s localhost:$rpc_port/status | jq .result)
