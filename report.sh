@@ -82,14 +82,14 @@ cat >$json << EOF
         "pubkey":"$pubkey",
         "catchingUp":"$catchingUp",
         "jailed":"$jailed",
-        "active":$active,
-        "local_height":$latest_block,
-        "network_height":$network_height,
-        "votingPower":$votingPower,
-        "tokens":$tokens,
-        "threshold":$threshold,
-        "delegators":$delegators,
-        "balance":$balance
+        "active":"$active",
+        "local_height":"$latest_block",
+        "network_height":"$network_height",
+        "votingPower":"$votingPower",
+        "tokens":"$tokens",
+        "threshold":"$threshold",
+        "delegators":"$delegators",
+        "balance":"$balance"
   }
 }
 EOF
