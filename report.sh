@@ -40,7 +40,7 @@ if $catchingUp
   message="height $latest_block/$network_height left $(( network_height - latest_block ))";
  else 
   if [ $active -eq 1 ]; 
-   then status=active; 
+   then status=active;message="diff $(( network_height - latest_block ))" 
    else status=inactive;message="height $latest_block/$network_height left $(( network_height - latest_block ))";
  fi
 fi
