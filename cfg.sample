@@ -8,4 +8,4 @@ DENOM=ua0gi
 CHAIN=zgtendermint_16600-2
 MONIKER=
 ID=
-PUBLIC_RPC=https://evmrpc-testnet.0g.ai
+PUBLIC_RPC=https://testnet.zero-gravity.rpc.liveraven.net
