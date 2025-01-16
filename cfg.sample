@@ -9,3 +9,4 @@ CHAIN=zgtendermint_16600-2
 MONIKER=
 ID=
 PUBLIC_RPC=https://testnet.zero-gravity.rpc.liveraven.net
+SNAPSHOT_URL=https://config-t.noders.services/og/data.tar.lz4
