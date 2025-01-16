@@ -5,8 +5,6 @@ source ~/.bash_profile
 
 read -p "Tag? (https://github.com/0glabs/0g-chain/releases) " tag
 
-sudo apt install -y unzip wget golang-go
-
 #remove old binary and repo
 rm $(which 0gchaind)
 rm -r ~/0g-chain
