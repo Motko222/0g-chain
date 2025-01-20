@@ -5,15 +5,18 @@ source ~/.bash_profile
 
 read -p "Tag? (https://github.com/0glabs/0g-chain/releases) " tag
 
-#remove old binary and repo
-rm $(which 0gchaind)
-rm -r ~/0g-chain
+#install binary by build
+#cd ~
+#git clone -b $tag https://github.com/0glabs/0g-chain.git
+#./0g-chain/networks/testnet/install.sh
+#source ~/.profile
 
-#install binary
-cd ~
-git clone -b $tag https://github.com/0glabs/0g-chain.git
-./0g-chain/networks/testnet/install.sh
-source ~/.profile
+#Install binary by download
+cd /root/go/bin
+rm 0gchaind
+wget https://github.com/0glabs/0g-chain/releases/download/$tag/0gchaind-linux-$tag
+cp 0gchaind-linux-$tag 0gchaind
+chmod +x 0gchaind
 
 #create cfg file
 if [ -f ~/scripts/$folder/cfg ]
