@@ -18,5 +18,5 @@ def_to=$(echo $PASS | $BINARY keys show $KEY -a)
 
 [ -z $3 ] && read -p "Amount ? " amount || amount=$3
 
-echo $PASS | $BINARY tx bank send $from $to $amount$DENOM \
-   --gas-adjustment $GAS_ADJ --gas auto -y
+#echo $PASS | $BINARY tx bank send $from $to $amount$DENOM --gas-adjustment $GAS_ADJ --gas auto -y
+echo $PASS | $BINARY tx bank send $from $to $amount$DENOM --gas-adjustment $GAS_ADJ --gas $GAS --gas-prices $GAS_PRICE -y
