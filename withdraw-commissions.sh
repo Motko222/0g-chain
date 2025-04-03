@@ -7,5 +7,5 @@ source ~/.bash_profile
 
 valoper=$(echo $PASS | $BINARY keys show $KEY -a --bech val)
 
-echo $PASS | $BINARY tx distribution withdraw-rewards $valoper \
---from $KEY --commission --gas-adjustment $GAS_ADJ --gas auto -y
+#echo $PASS | $BINARY tx distribution withdraw-rewards $valoper --from $KEY --commission --gas-adjustment $GAS_ADJ --gas auto -y
+echo $PASS | $BINARY tx distribution withdraw-rewards $valoper --from $KEY --commission --gas-adjustment $GAS_ADJ --gas $GAS --gas-prices $GAS_PRICE -y
