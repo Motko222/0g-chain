@@ -15,5 +15,5 @@ $BINARY query staking delegations $wallet -o json | jq -c -r '.delegation_respon
 [ -z $3 ] && read -p "To valoper ? " to_valoper || to_valoper=$3
 [ -z $4 ] && read -p "Amount ? " amount || amount=$4
 
-echo $PASS | $BINARY tx staking redelegate $from_valoper $to_valoper $amount$DENOM --from $key \
- --gas-adjustment $GAS_ADJ --gas auto -y
+#echo $PASS | $BINARY tx staking redelegate $from_valoper $to_valoper $amount$DENOM --from $key --gas-adjustment $GAS_ADJ --gas auto -y
+echo $PASS | $BINARY tx staking redelegate $from_valoper $to_valoper $amount$DENOM --from $key --gas-adjustment $GAS_ADJ --gas $GAS --gas-prices $GAS_PRICE -y
