@@ -17,4 +17,5 @@ $BINARY query gov proposals --status voting_period -o json | jq -r '.proposals[]
 [ -z $3 ] && read -p "Option (YES/no/nowithveto/abstain) ? " option || option=$3
 [ -z $option ] && option=yes
 
-echo $PASS | $BINARY tx gov vote $proposal $option --from $key --gas-adjustment $GAS_ADJ --gas auto -y
+#echo $PASS | $BINARY tx gov vote $proposal $option --from $key --gas-adjustment $GAS_ADJ --gas auto -y
+echo $PASS | $BINARY tx gov vote $proposal $option --from $key --gas-adjustment $GAS_ADJ --gas $GAS --gas-prices $GAS_PRICE -y
