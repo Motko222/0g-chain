@@ -11,11 +11,11 @@ sudo systemctl disable 0gchaind
 rm /etc/systemd/system/0gchaind.service
 
 #backup keys and config
-rm -r /root/backup/0g-chain
-mkdir /root/backup/0g-chain
-cp -r /root/.0gchain/config /root/backup/0g-chain
-mkdir /root/backup/0g-chain/data
-cp /root/.0gchain/data/*.json /root/backup/0g-chain/data
+rm -r /root/backup/.0gchain
+mkdir /root/backup/.0gchain
+cp -r /root/.0gchain/config /root/backup/.0gchain
+mkdir /root/backup/.0gchain/data
+cp /root/.0gchain/data/*.json /root/backup/.0gchain/data
 
 #remove folder
 #rm -r /root/.0gchain
